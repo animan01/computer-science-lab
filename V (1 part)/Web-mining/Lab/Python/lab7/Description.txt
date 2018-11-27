@@ -1,0 +1,42 @@
+Лабораторна работа №7
+Тема: Використання засобів надсилання електронних листів
+Зміст роботи
+Створити текстовий чи csv-файл з 5-ма електронними адресами.
+За допомогою Python написати скрипт для надсилання повідомлення до отримувачів.
+Можна використовувати також адресу відправника:
+Логін: web.minning2017@gmail.com
+Пароль: aq1212qa
+Передбачити введення теми повідомлення та його тексту з клавіатури при виконанні програми.
+
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+import smtplib
+
+
+file = open("G:\ЧНУ\Дисципліни\Web-mining\Web-mining\Лабораторні\Лаб 7\email.txt", "r")
+file = file.readlines()
+print(file)
+n = len(file)
+print(n)
+
+from_ = "web.minning2017@gmail.com"
+user_passwd = "aq1212qa"
+
+to = []
+for i in range(n):
+    to = file[i]
+    msg = MIMEMultipart()
+    msg['From'] = from_
+    msg['To'] = to
+    print("Введіть тему повідомлення")
+    msg['Subject'] = input()
+    print("Введіть текст повідомлення")
+    body = input()
+    msg.attach(MIMEText(body, 'plain'))
+
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.starttls()
+    server.login(from_, user_passwd)
+    text = msg.as_string()
+    server.sendmail(from_, to, text)
+    server.quit()

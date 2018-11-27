@@ -1,0 +1,8 @@
+Взяти текст книг:
+Lord of the Rings
+Clean Code
+
+І порахувавти скільки разів зустрічається слово в книзі.
+
+yuramail2@rambler.ru
+

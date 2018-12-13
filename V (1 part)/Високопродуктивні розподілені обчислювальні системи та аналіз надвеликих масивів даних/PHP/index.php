@@ -8,6 +8,9 @@ $tests = [
 
 foreach ($tests as $key => $text) {
 
+  $time_start = microtime(TRUE);
+
+
   $text = str_replace('_normal', '', $text);
   //var_dump($text);
 
@@ -690,6 +693,12 @@ foreach ($tests as $key => $text) {
   }
 
   fclose($filecsv);
+
+  $time_end = microtime(TRUE);
+
+  $time = $time_end - $time_start;
+
+  print_r("Execute time: $time \n");
 
 }
 
